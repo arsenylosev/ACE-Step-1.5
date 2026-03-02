@@ -5,8 +5,6 @@ Provides OpenAI Chat Completions API format for text-to-music generation.
 Endpoints:
 - GET  /v1/models            List available models with pricing
 - POST /v1/chat/completions  Generate music from text prompt
-- POST /v1/sample            LLM generates caption/lyrics/metadata from query
-- POST /v1/audio2code        Convert source audio to audio code tokens
 - GET  /health               Health check
 
 Usage:
@@ -427,9 +425,6 @@ def _format_lm_content(result: Dict[str, Any]) -> str:
     If LM was used, returns formatted metadata and lyrics.
     Otherwise returns a simple success message.
     """
-    if not result.get("lm_used"):
-        return "Music generated successfully."
-
     metadata = result.get("metadata", {})
     lyrics = result.get("lyrics", "")
 
